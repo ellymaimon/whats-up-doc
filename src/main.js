@@ -4,10 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { Doctor } from './doctor.js'
 
+function isUndefined(element) {
+  if(element === undefined) return true;
+  else return false;
+}
+
+function isAccepting(element) {
+  if(element) return "The doctor is currently accepting new patients."
+  else return "The doctor is currently not accepting new patients."
+}
+
 $(document).ready(function(){
   let doctor = new Doctor();  // create instance of Doctor class
 
-  $("#doctor-form").submit(function(event){
+  $("#doctor-form").submit(function(event){ //submit the form to search
     event.preventDefault();
     let doctorName = $("#doctor-name").val();
     let namePromise = doctor.getDoctorByName(doctorName);  // call the instance method
@@ -16,54 +26,34 @@ $(document).ready(function(){
     namePromise.then(function(response) {
       let body = JSON.parse(response);
       $("#results").html("");
-      console.log(body.data[0]);
       //Message if no doctors were found
-      if (body.data[0] === undefined) {
+      if (isUndefined(body.data[0])) {
         $("#results").append(`<h3>Sorry, no doctors with that name were found in the area.</h3>`);
       } 
       //Display doctors in cards
       else {
         body.data.forEach(function(doctor){
-          console.log(doctor);
+          let firstName = doctor.profile.first_name;
+          let lastName = doctor.profile.last_name;
+          let address = doctor.practices[0].visit_address.street;
+          let address2 = doctor.practices[0].visit_address.street2;
+          let city = doctor.practices[0].visit_address.city;
+          let state = doctor.practices[0].visit_address.state;
+          let zip = doctor.practices[0].visit_address.zip;
+          let phone = doctor.practices[0].phones[0].number;
+          let website = doctor.practices[0].website;
+          let accepts = doctor.practices[0].accepts_new_patients;
+
           $("#results").append(`<div class='card'><div class='card-body'>
-          <h5 class='card-title doctor-name'>${doctor.profile.first_name} ${doctor.profile.last_name}</h5>
-          <p class='card-text address'>Address: ${doctor.practices[0].visit_address.street} ${doctor.practices[0].visit_address.street2},
-          ${doctor.practices[0].visit_address.city}, ${doctor.practices[0].visit_address.state},
-          ${doctor.practices[0].visit_address.zip}</p>
-          <p class='card-text phone'>Phone: ${doctor.practices[0].phones[0].number}</p>`);
-          // $("#results").append("<p class='card-text phone'></p>");
-          // $("#results").append("<p class='card-text website'></p>");
-          // $("#results").append("<p class='card-text accepting'></p></div></div>"); 
+          <h5 class='card-title doctor-name'>${firstName} ${lastName}</h5>
+          <p class='card-text'><b>Address:</b> ${address} ${isUndefined(address2) ? "" : address2}, ${city}, ${state}, ${zip}</p>
+          <p class='card-text'><b>Phone:</b> ${phone}</p>
+          <p class='card-text'><b>Website:</b> ${isUndefined(website) ? "No website found." : website}</p>
+          <p class='card-text'>${isAccepting(accepts)}</p></div></div>`);
         });
       }
-      // console.log(body.data[0].practices[0].visit_address.city);
-      // console.log(body.data[0].practices[0].visit_address.state);
-      // console.log(body.data[0].practices[0].visit_address.street);
-      // console.log(body.data[0].practices[0].visit_address.street2);
-      // console.log(body.data[0].practices[0].visit_address.zip);
-      // console.log("Accepts? " + body.data[0].practices[0].accepts_new_patients);
-      // console.log(body.data[0].practices[0].phones[0].number);
-      // console.log(body.data[0].practices[0].website);
-      // console.log(body.data[1].practices[0].website);
-      // console.log(body.data[2].practices[0].website);
-      // console.log(body.data[0].profile.first_name);
-      // console.log(body.data[0].profile.last_name);
-
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
     });
-    
   });
-
 });
-
-
-{/* <div class="card">
-<div class="card-body">
-  <h5 class="card-title doctor-name"></h5>
-  <p class="card-text address"></p>
-  <p class="card-text phone"></p>
-  <p class="card-text website"></p>
-  <p class="card-text accepting"></p>
-</div>
-</div> */}
