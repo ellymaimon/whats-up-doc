@@ -1,7 +1,51 @@
+.container {
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
 #results {
   margin-top: 15px;
 }
 
+#title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#search {
+  font-size: 28px;
+  color: #5b924a;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+#no-input {
+  font-size: 20px;
+  color: #c43e3e;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+form {
+  background-color: #fff7e2;
+  padding: 25px;
+  border-radius: 20px;
+  border: 1px solid #fff7e2;
+}
+
 .card {
-  margin: 10px auto 10px auto;
+  margin: 15px auto 15px auto;
+  background-color: #0c4e63;
+  color: #f8f4e9;
+  border-radius: 20px;
+  border: 1px solid #0c4e63;
+}
+
+.card-title {
+  color: #f8f4e9;
+  font-size: 36px;
+}
+
+.card-text {
+  margin: 5px auto;
 }
