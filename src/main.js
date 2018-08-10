@@ -21,10 +21,10 @@ $(document).ready(function(){
 
   conditionsPromise.then(function(response) {
     let body = JSON.parse(response);
-    console.log(body.data[1].name);
 
     body.data.forEach(function(condition) {
       let name = condition.name;
+      $('#condition-select').append(`<option>${name}</option>`);
     });
   }, function(error) {
     $('.showErrors').text(`There was an error processing your request: ${error.message}`);
