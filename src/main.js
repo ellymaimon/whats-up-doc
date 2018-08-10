@@ -16,11 +16,33 @@ function isAccepting(element) {
 
 $(document).ready(function(){
   let doctor = new Doctor();  // create instance of Doctor class
+  let conditionsPromise = doctor.getConditions();
+
+
+  conditionsPromise.then(function(response) {
+    let body = JSON.parse(response);
+    console.log(body.data[1].name);
+
+    body.data.forEach(function(condition) {
+      let name = condition.name;
+    });
+  }, function(error) {
+    $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+  });
+
+
+
 
   $("#doctor-form").submit(function(event){ //submit the form to search
     event.preventDefault();
     let doctorName = $("#doctor-name").val();
+    
+    // let condition = ;
+
     let namePromise = doctor.getDoctorByName(doctorName);  // call the instance method
+
+    // let conditionPromise = doctor.getDoctorByCondition(condition);
+
     $("#results").html("<h3>Searching for the right doc...</h3>");
     
     namePromise.then(function(response) {
