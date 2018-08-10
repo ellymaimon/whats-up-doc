@@ -16,8 +16,10 @@
       <div class="form-group">
         <label for="condition-select">Condition</label>
         <select class="form-control" id="condition-select">
+          <option value="no">Don't search for a condition</option>
           <!-- Condition options populate here from API -->
         </select>
+        <small id="condition-help" class="form-text text-muted">Select a condition to search for a doctor who specializes in that condition.</small>
       </div>
       <button type="submit" class="btn btn-info">Find me a doc, STAT!</button>
     </form>
