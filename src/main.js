@@ -14,18 +14,29 @@ $(document).ready(function(){
     
     namePromise.then(function(response) {
       let body = JSON.parse(response);
-      console.log(body.data[0].practices[0].visit_address.city);
-      console.log(body.data[0].practices[0].visit_address.state);
-      console.log(body.data[0].practices[0].visit_address.street);
-      console.log(body.data[0].practices[0].visit_address.street2);
-      console.log(body.data[0].practices[0].visit_address.zip);
-      console.log("Accepts? " + body.data[0].practices[0].accepts_new_patients);
-      console.log(body.data[0].practices[0].phones[0].number);
-      console.log(body.data[0].practices[0].website);
-      console.log(body.data[1].practices[0].website);
-      console.log(body.data[2].practices[0].website);
-      console.log(body.data[0].profile.first_name);
-      console.log(body.data[0].profile.last_name);
+      body.data.forEach(function(doctor){
+        console.log(doctor);
+        $("#results").append(`<div class='card'><div class='card-body'>
+        <h5 class='card-title doctor-name'>${doctor.profile.first_name} ${doctor.profile.last_name}</h5>
+        <p class='card-text address'>${doctor.practices[0].visit_address.street}</p>`);
+        // $("#results").append("<p class='card-text phone'></p>");
+        // $("#results").append("<p class='card-text website'></p>");
+        // $("#results").append("<p class='card-text accepting'></p></div></div>"); 
+      });
+      
+      // console.log(body.data[0].practices[0].visit_address.city);
+      // console.log(body.data[0].practices[0].visit_address.state);
+      // console.log(body.data[0].practices[0].visit_address.street);
+      // console.log(body.data[0].practices[0].visit_address.street2);
+      // console.log(body.data[0].practices[0].visit_address.zip);
+      // console.log("Accepts? " + body.data[0].practices[0].accepts_new_patients);
+      // console.log(body.data[0].practices[0].phones[0].number);
+      // console.log(body.data[0].practices[0].website);
+      // console.log(body.data[1].practices[0].website);
+      // console.log(body.data[2].practices[0].website);
+      // console.log(body.data[0].profile.first_name);
+      // console.log(body.data[0].profile.last_name);
+
     }, function(error) {
       $('.showErrors').text(`There was an error processing your request: ${error.message}`);
     });
@@ -35,12 +46,12 @@ $(document).ready(function(){
 });
 
 
-// <div class="card">
-// <div class="card-body">
-//   <h5 class="card-title doctor-name"></h5>
-//   <p class="card-text address"></p>
-//   <p class="card-text phone"></p>
-//   <p class="card-text website"></p>
-//   <p class="card-text accepting"></p>
-// </div>
-// </div>
+{/* <div class="card">
+<div class="card-body">
+  <h5 class="card-title doctor-name"></h5>
+  <p class="card-text address"></p>
+  <p class="card-text phone"></p>
+  <p class="card-text website"></p>
+  <p class="card-text accepting"></p>
+</div>
+</div> */}
