@@ -7,7 +7,13 @@
   <div class="container">
     <h1>What's Up Doc?</h1>
     <form id="doctor-search">
-
+      <h2>Search by Name:</h2>
+      <div class="form-group">
+        <label for="name">Doctor's Name</label>
+        <input class="form-control" id="doctor-name" placeholder="Enter doctor's name">
+        <small id="doctor-help" class="form-text text-muted">Search by first name, last name, full name, or even just partial names!</small>
+      </div>
+      <button type="submit" class="btn btn-info">Find me a doc, STAT!</button>
     </form>
   </div>
 </body>
@@ -20,3 +26,4 @@
 
 <!-- https://api.betterdoctor.com/2016-03-01/conditions?user_key=b787d2a9c00f236733ca822ea5b88029 -->
 
+<!-- https://api.betterdoctor.com/2016-03-01/doctors?name=carrie&location=or-portland&skip=0&limit=15&user_key=b787d2a9c00f236733ca822ea5b88029 -->
