@@ -27,7 +27,7 @@ function displayDoctors(doctor) {
   let accepts = doctor.practices[0].accepts_new_patients;
 
   $("#results").append(`<div class='card'><div class='card-body'>
-  <h5 class='card-title doctor-name'>${firstName} ${lastName}</h5>
+  <h5 class='card-title doctor-name'>Dr. ${firstName} ${lastName}</h5>
   <p class='card-text'><b>Address:</b> ${address} ${isUndefined(address2) ? "" : address2}, ${city}, ${state}, ${zip}</p>
   <p class='card-text'><b>Phone:</b> ${phone}</p>
   <p class='card-text'><b>Website:</b> ${isUndefined(website) ? "No website found." : website}</p>
@@ -53,11 +53,11 @@ $(document).ready(function(){
     event.preventDefault();
     let doctorName = $("#doctor-name").val();
     let condition =  $("#condition-select").val();
-    $("#results").html("<h3>Searching for the right doc...</h3>");
+    $("#results").html("<h3 id='search'>Searching for the right doc...</h3>");
     
     if(doctorName === "" && condition == "no") {
       $("#results").html("");
-      $("#results").append(`<h3>Please input a name or select a condition.</h3>`); 
+      $("#results").append(`<h3 id='no-input'>*Please input a name or select a condition</h3>`); 
     }
     else if(condition === "no") {
       let namePromise = doctor.getDoctorByName(doctorName);
