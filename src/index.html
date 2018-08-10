@@ -6,7 +6,7 @@
 <body>
   <div class="container">
     <h1>What's Up Doc?</h1>
-    <form id="doctor-search">
+    <form id="doctor-form">
       <h2>Search by Name:</h2>
       <div class="form-group">
         <label for="name">Doctor's Name</label>
@@ -15,10 +15,28 @@
       </div>
       <button type="submit" class="btn btn-info">Find me a doc, STAT!</button>
     </form>
+    <div id="results">
+      <div class="card-group doctors">
+          <!-- <div class="card">
+            <div class="card-body">
+              <h5 class="card-title doctor-name"></h5>
+              <p class="card-text address"></p>
+              <p class="card-text phone"></p>
+              <p class="card-text website"></p>
+              <p class="card-text accepting"></p>
+            </div>
+          </div> -->
+        </div>
+    </div>
   </div>
 </body>
 </html>
 
+<!-- If the query response includes any doctors, the following
+   information should be included about each doctor: first name, 
+   last name, address, phone number, website and whether or not
+    the doctor is accepting new patients (the API provides this data).
+   -->
 
 <!-- location slug: or-portland --> 
 
