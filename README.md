@@ -24,6 +24,7 @@
 * Node.js
 * Node Package Manager (Npm)
 * Babel Transpiler
+* File Loader npm
 * BetterDoctor API
 
 ## Links
