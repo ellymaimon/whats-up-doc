@@ -3,6 +3,16 @@
   margin-bottom: 40px;
 }
 
+#title-box{
+  text-align: center;
+}
+
+#bunny {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 30px;
+}
+
 #results {
   margin-top: 15px;
 }
@@ -10,6 +20,10 @@
 #title {
   text-align: center;
   margin-bottom: 20px;
+  display: inline-block;
+  font-style: italic;
+  font-weight: bold;
+  color: #8d1111;
 }
 
 #search {
@@ -17,6 +31,7 @@
   color: #5b924a;
   margin-top: 20px;
   margin-left: 40px;
+  font-style: italic;
 }
 
 #no-input {
