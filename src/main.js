@@ -2,7 +2,8 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { Doctor } from './doctor.js'
+import { Doctor } from './doctor.js';
+import img from './bunny.png'
 
 function isUndefined(element) {
   if(element === undefined) return true;
@@ -37,6 +38,9 @@ function displayDoctors(doctor) {
 $(document).ready(function(){
   let doctor = new Doctor();
   let conditionsPromise = doctor.getConditions();
+  console.log(img);
+  $("#title-box").append(`<img id='bunny' src='${img}'>`);
+  $("#title-box").append(`<h1 id='title'>What's Up, Doc?</h1>`);
 
   conditionsPromise.then(function(response) {
     let body = JSON.parse(response);
